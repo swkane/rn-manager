@@ -17,7 +17,8 @@
     "babel-jest": "23.4.0",
     "babel-preset-react-native": "^5",
     "jest": "23.4.1",
-    "react-test-renderer": "16.4.1"
+    "react-test-renderer": "16.4.1",
+    "remote-redux-devtools": "^0.5.12"
   },
   "jest": {
     "preset": "react-native"
