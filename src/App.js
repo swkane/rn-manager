@@ -1,14 +1,16 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import ReduxThunk from "redux-thunk";
 import firebase from "firebase";
-import reducers from "./reducers";
+import reducer from "./reducers";
 import LoginForm from "./components/LoginForm";
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-  reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  reducer,
+  composeEnhancers(applyMiddleware(ReduxThunk))
 );
 
 class App extends React.Component {
