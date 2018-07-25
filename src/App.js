@@ -1,11 +1,10 @@
 import React from "react";
-import { View } from "react-native";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import ReduxThunk from "redux-thunk";
 import firebase from "firebase";
 import reducer from "./reducers";
-import LoginForm from "./components/LoginForm";
+import Router from "./Router";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
@@ -28,9 +27,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <View>
-          <LoginForm />
-        </View>
+        <Router />
       </Provider>
     );
   }
