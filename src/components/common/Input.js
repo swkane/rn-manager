@@ -6,7 +6,8 @@ const Input = ({
   value,
   onChangeText,
   placeholder,
-  secureTextEntry
+  secureTextEntry,
+  autoFocus
 }) => {
   const { inputStyle, labelStyle, containerStyle } = styles;
 
@@ -14,6 +15,7 @@ const Input = ({
     <View style={containerStyle}>
       <Text style={labelStyle}>{label}</Text>
       <TextInput
+        autoFocus={autoFocus}
         secureTextEntry={secureTextEntry}
         placeholder={placeholder}
         autoCorrect={false}
