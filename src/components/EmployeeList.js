@@ -1,5 +1,5 @@
 import React from "react";
-import { ListView, View, Text } from "react-native";
+import { FlatList } from "react-native";
 import { connect } from "react-redux";
 import _ from "lodash";
 import { employeesFetch } from "../actions";
@@ -8,43 +8,25 @@ import ListItem from "./ListItem";
 class EmployeeList extends React.Component {
   componentWillMount() {
     this.props.employeesFetch();
-    this.createDataSource(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
-    // nextProps are the next set of props that this component will be rendered with
-    // this.props is still the old set of props
+  renderItem = employee => <ListItem employee={employee} />;
 
-    this.createDataSource(nextProps);
-  }
-
-  createDataSource({ employees }) {
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    });
-
-    this.dataSource = ds.cloneWithRows(employees);
-  }
-
-  renderRow = employee => {
-    return <ListItem employee={employee} />;
-  };
   render() {
-    console.log(this.props);
-
     return (
-      <ListView
-        enableEmptySections
-        dataSource={this.dataSource}
-        renderRow={this.renderRow}
+      <FlatList
+        data={this.props.employees}
+        renderItem={this.renderItem}
+        keyExtractor={employee => employee.uid}
       />
     );
   }
 }
 
 const mapStateToProps = state => {
+  // convert object holding all employees in Redux store to array of employees on component props
   const employees = _.map(state.employees, (val, uid) => {
-    return { ...val, uid }; // { shift: 'Monday', id: '123jkjkl4' }
+    return { ...val, uid };
   });
 
   return { employees };
