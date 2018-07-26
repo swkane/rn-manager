@@ -15,6 +15,7 @@ class EmployeeCreate extends React.Component {
       <Card>
         <CardSection>
           <Input
+            autoFocus
             label="Name"
             placeholder="Jane"
             value={this.props.name}
