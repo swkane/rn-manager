@@ -22,7 +22,6 @@ class LoginForm extends React.Component {
       <Card>
         <CardSection>
           <Input
-            autoFocus
             onChangeText={this.onEmailChange}
             label="Email"
             placeholder="email@gmail.com"
