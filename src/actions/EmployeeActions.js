@@ -4,7 +4,8 @@ import {
   EMPLOYEE_UPDATE,
   EMPLOYEE_CREATE,
   EMPLOYEES_FETCH_SUCCESS,
-  EMPLOYEE_SAVE_SUCCESS
+  EMPLOYEE_SAVE_SUCCESS,
+  EMPLOYEE_FORM_CLEAR
 } from "./types";
 
 export const employeeUpdate = ({ prop, value }) => ({
@@ -67,3 +68,7 @@ export const employeeDelete = ({ uid }) => {
       });
   };
 };
+
+export const employeeFormClear = () => ({
+  type: EMPLOYEE_FORM_CLEAR
+});

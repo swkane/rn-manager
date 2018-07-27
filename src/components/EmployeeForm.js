@@ -10,7 +10,6 @@ class EmployeeForm extends React.Component {
       <View>
         <CardSection>
           <Input
-            autoFocus
             label="Name"
             placeholder="Jane"
             value={this.props.name}

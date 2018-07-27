@@ -1,11 +1,13 @@
 import React from "react";
 import { Scene, Router, Actions } from "react-native-router-flux";
+import { connect } from "react-redux";
 import LoginForm from "./components/LoginForm";
 import EmployeeList from "./components/EmployeeList";
 import EmployeeCreate from "./components/EmployeeCreate";
 import EmployeeEdit from "./components/EmployeeEdit";
+import { employeeFormClear } from "./actions";
 
-const RouterComponent = () => {
+const RouterComponent = props => {
   return (
     <Router>
       <Scene key="root" hideNavBar>
@@ -35,6 +37,10 @@ const RouterComponent = () => {
             key="employeeEdit"
             component={EmployeeEdit}
             title="Edit Employee"
+            onExit={() => {
+              console.log("clear");
+              props.employeeFormClear();
+            }}
           />
         </Scene>
       </Scene>
@@ -42,4 +48,7 @@ const RouterComponent = () => {
   );
 };
 
-export default RouterComponent;
+export default connect(
+  null,
+  { employeeFormClear }
+)(RouterComponent);
